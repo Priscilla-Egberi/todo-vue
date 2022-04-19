@@ -10,29 +10,86 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
 
-    <title>Hello, world!</title>
+    <title>Vue todolist</title>
   </head>
   <body>
-    <section class="mx-auto mt-5 todo-body rounded mb-0 pb-0">
+    <section id="app" class="mx-auto mt-5 todo-body rounded mb-0 pb-0">
         <!-- the nav section -->
-        <ul class=" d-flex flex-row justify-content-center g-10 pb-0 mb-0">
-            <li><a href="" class="current px-10">Day</a></li>
-            <li><a href="">week</a></li>
-            <li><a href="">month</a></li>
-            <li><a href="">year</a></li>
-        </ul>
+          <header>
+            <ul class=" d-flex flex-row justify-content-center g-10 pb-0 mb-0">
+              <li><a href="" class="current px-10">Day</a></li>
+              <li><a href="">Week</a></li>
+              <li><a href="">Month</a></li>
+              <li><a href="">Year</a></li>
+          </ul>
+          </header>
         <hr class="mt-0">
         <!-- date -->
-        <div class="d-flex flex-row justify-content-center align-items-center g-10 my-4">
+        <div class="d-flex flex-row justify-content-center align-items-center g-10 mt-5">
             <div><i class="fa-solid fa-chevron-left fa-2x text-muted"></i></div>
             <div class="text-center"><h3>Thursday</h3>
             <p class="text-muted">Mar 23, 2017</p></div>
             <div><i class="fa-solid fa-chevron-right fa-2x text-muted"></i></div>
         </div>
-
+        <!-- input -->
+        <div class="d-flex justify-content-center ">
+          <div class="input-group w-75 input-style">
+            <span class="input-group-text input-style" id="basic-addon1">@</span>
+            <input @keyup.enter="saveItem" v-model="newItem" type="text" placeholder="Add task..." class="input-style bg-dark text-white form-control" aria-label="Username" aria-describedby="basic-addon1">
+          </div>
+        </div>
+        
+        <!-- pinned items -->
+        <div  class="mt-3">
+          <table class="table table-borderless">          
+            <tbody>
+              <tr v-for="(item, index) in pinnedItems">
+                <td class="col-1  text-center" ><i class="fa-solid fa-map-pin text-pink w-100 rotate"></i></td>
+                <td class="col-1" ><input type="checkbox" class="w-100"></td>
+                <td class="text-white col-9">{{item.name}}</td>
+                <td class="text-white col-1"> 
+                  <div class="dropdown">
+                    <a class="btn text-white" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                     <i class="fa fa-ellipsis"></i>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                      <li @click="unPinItem(item)"><a class="dropdown-item" href="#"><i class="fa-solid fa-map-pin "></i> Unpin item</a></li>
+                      <li @click="deletePinnedItem(item)"><a class="dropdown-item" href="#"><i class="fa-solid fa-trash-can"></i> delete</a></li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      <hr>
+        <!-- todo items -->
+        <div  class="mt-5">
+          <table class="table table-borderless">          
+            <tbody>
+              <tr v-for="(item, index) in items">
+                <td class="col-1  text-center" ></i></td>
+                <td class="col-1" ><input type="checkbox" class="w-100"></td>
+                <td class="text-white col-9">{{item.name}}</td>
+                <td class="text-white col-1">
+                          <div class="dropdown">
+                          <a class="btn text-white" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-ellipsis"></i>
+                          </a>
+                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <li @click="pinItem(item)"><a class="dropdown-item" href="#"><i class="fa-solid fa-map-pin "></i> pin item</a></li>
+                            <li @click="deleteItem(item)"><a class="dropdown-item" href="#"><i class="fa-solid fa-trash-can"></i> delete</a></li>
+                          </ul>
+                        </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
     </section>
 
     <!-- Optional JavaScript; choose one of the two! -->
+    <script src="https://unpkg.com/vue@3"></script>
     <script src="index.js"></script>
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

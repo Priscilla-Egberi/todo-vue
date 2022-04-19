@@ -8,6 +8,21 @@ body{
     color:white;
 }
 
+.table{
+    background-color: #3a3636;
+}
+
+.g-10{
+    gap:70px
+}
+
+.text-pink{
+    color:#D61E7A
+}
+
+.rotate{
+    transform: rotate(-20deg);
+}
 ul{
     text-indent: none;
 }
@@ -16,17 +31,18 @@ li{
     list-style: none;
 }
 
-a{
+li a{
     text-decoration: none;
     color:white
 }
 
-.g-10{
-    gap:70px
+
+.input-style{
+    outline:none !important;
+    border:none !important
 }
 
-
-a{
+header li a{
     display:inline-block;
     color:rgb(155, 141, 141);
     width:fit-content;
@@ -34,7 +50,9 @@ a{
     padding-top:10px;
     padding-bottom:10px;
 }
-li a:hover, .current{
+
+header li a:hover, .current{
     border-bottom:#D61E7A 2px solid;
     color:white !important;
+    transform:scale(1.1)
 }
