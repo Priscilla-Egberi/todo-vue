@@ -1,0 +1,40 @@
+body{
+    background-color:#D61E7A;
+}
+
+.todo-body{
+    width:50%;
+    background-color: #3a3636;
+    color:white;
+}
+
+ul{
+    text-indent: none;
+}
+
+li{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+    color:white
+}
+
+.g-10{
+    gap:70px
+}
+
+
+a{
+    display:inline-block;
+    color:rgb(155, 141, 141);
+    width:fit-content;
+    height:fit-content;
+    padding-top:10px;
+    padding-bottom:10px;
+}
+li a:hover, .current{
+    border-bottom:#D61E7A 2px solid;
+    color:white !important;
+}
